@@ -26,7 +26,7 @@ func TestViewRenderInvalidOperation(t *testing.T) {
 	require.NoError(t, err)
 
 	os.Stdout = fakeStdout
-	RenderInvalidOperation(2.23)
+	RenderInvalidOperation("2.2300")
 
 	fakeStdout.Close()
 	bytes, err := io.ReadAll(r)
