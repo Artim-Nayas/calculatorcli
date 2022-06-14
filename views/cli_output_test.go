@@ -20,3 +20,16 @@ func TestRender(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "output should be this", string(bytes))
 }
+
+func TestViewRenderInvalidOperation(t *testing.T) {
+	r, fakeStdout, err := os.Pipe()
+	require.NoError(t, err)
+
+	os.Stdout = fakeStdout
+	RenderInvalidOperation(2.23)
+
+	fakeStdout.Close()
+	bytes, err := io.ReadAll(r)
+	r.Close()
+	assert.Equal(t, "Invalid operation - current value: 2.2300", string(bytes))
+}
