@@ -17,3 +17,7 @@ func RegisterHandler(op Operation, h handlerFunc) {
 	}
 	handlers[op] = h
 }
+
+func GetHandler(operation Operation) (h handlerFunc) {
+	return h
+}

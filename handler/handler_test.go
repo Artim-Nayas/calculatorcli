@@ -28,3 +28,12 @@ func resetHandler() func() {
 	handlers = map[Operation]handlerFunc{}
 	return func() { handlers = map[Operation]handlerFunc{} }
 }
+
+func TestGetHandler(t *testing.T) {
+	t.Run("should return a handler given a Operation", func(t *testing.T) {
+		defer resetHandler()()
+		RegisterHandler("add", func(c models.Calculator, v float64) {})
+
+		assert.IsType(t, *new(handlerFunc), GetHandler("add"))
+	})
+}
