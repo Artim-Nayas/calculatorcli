@@ -7,5 +7,5 @@ func Render(output string) {
 }
 
 func RenderInvalidOperation(value float64) {
-	fmt.Printf("invalid operations; current value: %0.4f", value)
+	fmt.Printf("Invalid operation - current value: %0.4f", value)
 }
