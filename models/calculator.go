@@ -14,6 +14,7 @@ type Calculator interface {
 	fmt.Stringer
 	Add(operand float64)
 	Sub(operand float64)
+	Mul(operand float64)
 }
 
 func NewCalculator() *calculator {
