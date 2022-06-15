@@ -44,3 +44,7 @@ func TestDivHandlerOutput(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "0.7800", string(bytes))
 }
+
+func TestDivHandlerRegistration(t *testing.T) {
+	assert.IsType(t, handlerFunc(DivHandler), GetHandler("div"))
+}
