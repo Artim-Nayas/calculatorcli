@@ -9,6 +9,7 @@ import (
 )
 
 func TestRender(t *testing.T) {
+	defer setupStdout()()
 	r, fakeStdout, err := os.Pipe()
 	require.NoError(t, err)
 
@@ -22,6 +23,7 @@ func TestRender(t *testing.T) {
 }
 
 func TestViewRenderInvalidOperation(t *testing.T) {
+	defer setupStdout()()
 	r, fakeStdout, err := os.Pipe()
 	require.NoError(t, err)
 
@@ -35,6 +37,7 @@ func TestViewRenderInvalidOperation(t *testing.T) {
 }
 
 func TestRenderCliInput(t *testing.T) {
+	defer setupStdout()()
 	r, fakeStdout, err := os.Pipe()
 	require.NoError(t, err)
 
@@ -45,4 +48,9 @@ func TestRenderCliInput(t *testing.T) {
 	bytes, err := io.ReadAll(r)
 	r.Close()
 	assert.Equal(t, "\n>", string(bytes))
+}
+
+func setupStdout() func() {
+	originalStdout := os.Stdout
+	return func() { os.Stdout = originalStdout }
 }

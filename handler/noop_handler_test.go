@@ -10,6 +10,7 @@ import (
 )
 
 func TestNoopHandler(t *testing.T) {
+	defer setupStdout()()
 	r, fakeStdout, err := os.Pipe()
 	require.NoError(t, err)
 
@@ -21,4 +22,9 @@ func TestNoopHandler(t *testing.T) {
 	r.Close()
 
 	assert.Equal(t, "Invalid operation - current value: 0.0000", string(bytes))
+}
+
+func setupStdout() func() {
+	originalStdout := os.Stdout
+	return func() { os.Stdout = originalStdout }
 }

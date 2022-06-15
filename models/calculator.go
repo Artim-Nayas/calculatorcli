@@ -12,6 +12,7 @@ func (c *calculator) String() string {
 
 type Calculator interface {
 	fmt.Stringer
+	Add(operand float64)
 }
 
 func NewCalculator() *calculator {
