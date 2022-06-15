@@ -44,3 +44,7 @@ func TestSubHandlerOutput(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "-45.4500", string(bytes))
 }
+
+func TestSubHandlerRegistration(t *testing.T) {
+	assert.IsType(t, handlerFunc(SubHandler), GetHandler("sub"))
+}
