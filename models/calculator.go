@@ -16,6 +16,7 @@ type Calculator interface {
 	Sub(operand float64)
 	Mul(operand float64)
 	Div(operand float64)
+	Cancel()
 }
 
 func NewCalculator() *calculator {
