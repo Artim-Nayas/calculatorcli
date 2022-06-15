@@ -48,3 +48,18 @@ func TestDivHandlerOutput(t *testing.T) {
 func TestDivHandlerRegistration(t *testing.T) {
 	assert.IsType(t, handlerFunc(DivHandler), GetHandler("div"))
 }
+
+func TestDivisionException(t *testing.T) {
+	t.Run("divide by 0 not allowed", func(t *testing.T) {
+		r, fakeStdout, err := os.Pipe()
+		require.NoError(t, err)
+		os.Stdout = fakeStdout
+		calc := models.NewCalculator()
+		GetHandler(divOperation)(calc, 0)
+		fakeStdout.Close()
+		bytes, err := io.ReadAll(r)
+		r.Close()
+		assert.Equal(t, "Division by 0 not permitted\n0.0000", string(bytes))
+
+	})
+}
