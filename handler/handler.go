@@ -6,11 +6,11 @@ import (
 )
 
 type Operation string
-type handlerFunc func(c models.Calculator, v float64)
+type HandlerFunc func(c models.Calculator, v float64)
 
-var handlers = map[Operation]handlerFunc{}
+var handlers = map[Operation]HandlerFunc{}
 
-func RegisterHandler(op Operation, h handlerFunc) {
+func RegisterHandler(op Operation, h HandlerFunc) {
 	if _, found := handlers[op]; found {
 		err := fmt.Errorf("duplicate handlers registration for Operation: %s", op)
 		panic(err)
@@ -18,6 +18,9 @@ func RegisterHandler(op Operation, h handlerFunc) {
 	handlers[op] = h
 }
 
-func GetHandler(operation Operation) (h handlerFunc) {
-	return h
+func GetHandler(operation Operation) (h HandlerFunc) {
+	if h, found := handlers[operation]; found {
+		return h
+	}
+	return NoopHandler
 }

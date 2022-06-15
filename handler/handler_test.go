@@ -25,8 +25,8 @@ func TestRegisterHandler(t *testing.T) {
 }
 
 func resetHandler() func() {
-	handlers = map[Operation]handlerFunc{}
-	return func() { handlers = map[Operation]handlerFunc{} }
+	handlers = map[Operation]HandlerFunc{}
+	return func() { handlers = map[Operation]HandlerFunc{} }
 }
 
 func TestGetHandler(t *testing.T) {
@@ -34,6 +34,13 @@ func TestGetHandler(t *testing.T) {
 		defer resetHandler()()
 		RegisterHandler("add", func(c models.Calculator, v float64) {})
 
-		assert.IsType(t, *new(handlerFunc), GetHandler("add"))
+		assert.IsType(t, *new(HandlerFunc), GetHandler("add"))
+	})
+
+	t.Run("should return noop handler when Operation is not found", func(t *testing.T) {
+		defer resetHandler()()
+
+		h := GetHandler("add")
+		assert.IsType(t, HandlerFunc(NoopHandler), h)
 	})
 }

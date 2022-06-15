@@ -5,6 +5,6 @@ import (
 	"calculatorcli/views"
 )
 
-func NoopHandler(c models.Calculator, v float64) {
+func NoopHandler(c models.Calculator, value float64) {
 	views.RenderInvalidOperation(c.String())
 }
