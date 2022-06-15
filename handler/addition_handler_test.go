@@ -45,5 +45,5 @@ func TestAddHandlerOutput(t *testing.T) {
 }
 
 func TestAddHandlerRegistration(t *testing.T) {
-	assert.IsType(t, handlerFunc(AddHandler), GetHandler("Add"))
+	assert.IsType(t, handlerFunc(AddHandler), GetHandler("add"))
 }
