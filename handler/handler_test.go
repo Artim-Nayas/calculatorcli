@@ -25,8 +25,9 @@ func TestRegisterHandler(t *testing.T) {
 }
 
 func resetHandler() func() {
+	initialHandler := handlers
 	handlers = map[Operation]handlerFunc{}
-	return func() { handlers = map[Operation]handlerFunc{} }
+	return func() { handlers = initialHandler }
 }
 
 func TestGetHandler(t *testing.T) {

@@ -10,9 +10,7 @@ import (
 )
 
 func TestAddHandler(t *testing.T) {
-	resetHandler()
 	c := models.NewCalculator()
-	RegisterHandler(addOperation, AddHandler)
 	GetHandler(addOperation)(c, 12.23)
 
 	assert.Equal(t, "12.2300", c.String())

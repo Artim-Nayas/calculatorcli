@@ -10,9 +10,7 @@ import (
 )
 
 func TestSubHandler(t *testing.T) {
-	resetHandler()
 	c := models.NewCalculator()
-	RegisterHandler(subOperation, SubHandler)
 	GetHandler(subOperation)(c, 12.23)
 	assert.Equal(t, "-12.2300", c.String())
 
