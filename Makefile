@@ -3,16 +3,15 @@ GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
-BINARY_NAME=wealth
+BINARY_NAME=calculator
 
 build:
-	$(GOBUILD) -o $(BINARY_NAME) -v
+	$(GOBUILD) -o out/$(BINARY_NAME) -v
 clean:
 	$(GOCLEAN)
 	rm -f $(BINARY_NAME)
-run:
-	$(GOBUILD) -o $(BINARY_NAME) -v
-	./$(BINARY_NAME)
+run: build
+	./out/$(BINARY_NAME)
 deps:
 	$(GOGET) github.com/stretchr/testify/assert
 test :
