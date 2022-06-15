@@ -33,3 +33,7 @@ func TestCancelHandlerOutput(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "0.0000", string(bytes))
 }
+
+func TestCancelHandlerRegistration(t *testing.T) {
+	assert.IsType(t, handlerFunc(CancelHandler), GetHandler("cancel"))
+}
