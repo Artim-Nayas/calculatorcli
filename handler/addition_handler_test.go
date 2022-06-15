@@ -43,3 +43,7 @@ func TestAddHandlerOutput(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "45.4500", string(bytes))
 }
+
+func TestAddHandlerRegistration(t *testing.T) {
+	assert.IsType(t, handlerFunc(AddHandler), GetHandler("Add"))
+}
