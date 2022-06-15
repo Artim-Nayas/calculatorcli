@@ -44,3 +44,7 @@ func TestMulHandlerOutput(t *testing.T) {
 	r.Close()
 	assert.Equal(t, "0.2322", string(bytes))
 }
+
+func TestMulHandlerRegistration(t *testing.T) {
+	assert.IsType(t, handlerFunc(MulHandler), GetHandler("mul"))
+}
