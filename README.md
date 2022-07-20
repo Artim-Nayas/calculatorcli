@@ -28,4 +28,30 @@ TODO
 
 ## CLI Application Usage
 
-TODO
+__Run__ the CLI Application:
+
+    $ make run
+
+_Note: The initial value is set as 0.00_
+<br>
+
+__Add__ an value to the balance:
+
+    add amount
+
+_Where __value__ is a float value_
+
+Example:
+
+    add 34.09
+
+
+__Subtract__ an value from the balance:
+
+    sub value
+
+_Where __value__ is a float value_
+
+Example:
+
+    sub 34.09
